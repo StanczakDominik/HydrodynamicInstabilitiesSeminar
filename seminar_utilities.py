@@ -46,10 +46,22 @@ class Variables(object):
 
         # conserved variables -- we set these when we initialize for
         # they match the CellCenterData2d object
-        self.idens = myd.names.index("density")
-        self.ixmom = myd.names.index("x-momentum")
-        self.iymom = myd.names.index("y-momentum")
-        self.iener = myd.names.index("energy")
+        try:
+            self.idens = myd.names.index("density")
+        except ValueError:
+            pass
+        try:
+            self.ixmom = myd.names.index("x-momentum")
+        except ValueError:
+            pass
+        try:
+            self.iymom = myd.names.index("y-momentum")
+        except ValueError:
+            pass
+        try:
+            self.iener = myd.names.index("energy")
+        except ValueError:
+            pass
 
         # if there are any additional variable, we treat them as
         # passively advected scalars
@@ -112,7 +124,7 @@ def pendulum(initial_theta = np.pi / 2, maxtime=10, max_step = np.inf):
 
 def images(
     pathstring = "kh_*.h5",
-    directory = "/home/dominik/pyro2",
+    directory = "/home/dominik/FUW/Semestr3/PrezentacjaNiestabilności/pyro2/backup2",
     interval = 2000,
     figsize = (20, 20),
 ):
@@ -135,7 +147,7 @@ def images(
 
 def images2(
     pathstring = "kh_*.h5",
-    directory = "/home/dominik/pyro2",
+    directory = "/home/dominik/FUW/Semestr3/PrezentacjaNiestabilności/pyro2/backup2",
     interval = 2000,
     figsize = (15, 10),
     fieldname="rho",
